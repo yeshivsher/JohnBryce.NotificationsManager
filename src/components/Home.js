@@ -11,7 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeNotificationById } from '../app/navbarSlice';
 
 const Home = () => {
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
     const notifications = useSelector(state => state.navbar.notifications)
 
     return (
@@ -19,13 +19,13 @@ const Home = () => {
             {
                 notifications.map(element => {
                     return <ListItem
-                    key={`notification-item-list-${element.id}`}
+                        key={`notification-item-list-${element.id}`}
                         secondaryAction={
-                            <IconButton 
-                            onClick={() => {
-                                dispatch(removeNotificationById({id: element.id}))
-                            }}
-                            edge="end" aria-label="delete">
+                            <IconButton
+                                onClick={() => {
+                                    dispatch(removeNotificationById({ id: element.id }))
+                                }}
+                                edge="end" aria-label="delete">
                                 <DeleteIcon />
                             </IconButton>
                         }
