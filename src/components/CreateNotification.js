@@ -3,6 +3,9 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNotification } from '../app/navbarSlice';
 
 const useStyles = makeStyles({
     root: {
@@ -24,6 +27,9 @@ const useStyles = makeStyles({
 
 const CreateNotification = () => {
     const classes = useStyles()
+    const dispatch = useDispatch()
+
+    const [message, setMessage] = useState('')
 
     return (
         <div className={classes.root}>
@@ -31,8 +37,20 @@ const CreateNotification = () => {
                 <Typography variant="h6" component="div">
                     Create new notification
                 </Typography>
-                <TextField id="outlined-basic" label="Message" variant="outlined" />
-                <Button variant="contained">Create</Button>
+                <TextField
+                    id="outlined-basic"
+                    label="Message"
+                    variant="outlined"
+                    value={message}
+                    onChange={e => setMessage(e.target.value)}
+                />
+                <Button
+                    onClick={() => {
+                        dispatch(addNotification({ message }))
+                        setMessage('')
+                    }}
+                    variant="contained"
+                >Create</Button>
             </Paper>
         </div>
     )
