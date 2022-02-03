@@ -22,10 +22,16 @@ export const navbarSlice = createSlice({
                 id: lastId + 1,
                 msg: action.payload.message
             })
+        },
+        removeNotificationById: (state, action) => {
+            let notificationId = action.payload.id
+            let filterdList = state.notifications.filter(item => item.id !== notificationId)
+
+            state.notifications = [...filterdList]
         }
     }
 })
 
-export const { addNotification } = navbarSlice.actions
+export const { addNotification,removeNotificationById } = navbarSlice.actions
 
 export default navbarSlice.reducer
